@@ -1,8 +1,0 @@
-Khi pull -> lấy thay đổi về local repo và trực tiếp merge về working dir
-
-Khi fetch -> lấy thay đổi về local repo, chúng ta có thể dùng các lệnh để biết những thay đổi
-    git diff main origin/main : xem  những thay đổi nhánh hiện tại và nhánh mới mới
-    git status
-    git logs --oneline main..origin/main để xem các commit mà main chưa có so với remote
-    Sau khi oke thì git pull để tải về
-
