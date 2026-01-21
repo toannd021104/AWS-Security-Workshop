@@ -6,10 +6,9 @@ chapter : false
 pre : " <b> 3. </b> "
 ---
 
-
-### Content
-3.1. [Centralizing findings from AWS security services](3.1/) \
-3.2. [Aggregating findings from multiple AWS accounts](3.2/) \
-3.3  [Centralizing findings from AWS partner solutions](3.3/) \
-3.4  [Cross-region finding aggregation](3.4/) \
-3.5  [Building your own Security Hub integration](3.5)
+### Nội dung
+3.1. [Tập trung các phát hiện từ các dịch vụ bảo mật AWS](3.1/) \
+3.2. [Tổng hợp phát hiện từ nhiều tài khoản AWS](3.2/) \
+3.3. [Tập hợp các phát hiện từ các giải pháp của đối tác AWS](3.3/) \
+3.4. [Tổng hợp phát hiện trên nhiều Region](3.4/) \
+3.5. [Xây dựng tích hợp Security Hub của riêng bạn](3.5)

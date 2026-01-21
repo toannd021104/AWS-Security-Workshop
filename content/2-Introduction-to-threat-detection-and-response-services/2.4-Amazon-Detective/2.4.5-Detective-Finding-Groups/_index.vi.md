@@ -1,14 +1,19 @@
 ---
-title : "Detective - Nhóm phát Hiện"
-date : "`r Sys.Date()`"
-weight : 5
-chapter : false
-pre : " <b> 2.4.5 </b> "
+title: "Detective - Nhóm phát hiện"
+date: "`r Sys.Date()`"
+weight: 5
+chapter: false
+pre: " <b> 2.4.5 </b> "
 ---
-Nhóm phát hiện bảo mật của Amazon Detective cho phép bạn kiểm tra nhiều hoạt động liên quan đến một sự kiện bảo mật tiềm ẩn. Bạn có thể phân tích nguyên nhân cốt lõi của các phát hiện bảo mật nghiêm trọng từ GuardDuty bằng cách sử dụng các nhóm phát hiện bảo mật. Nếu một tác nhân đe dọa đang cố gắng xâm nhập vào môi trường AWS của bạn, họ thường thực hiện một chuỗi hành động dẫn đến nhiều phát hiện bảo mật bảo mật và hành vi bất thường. Những hành động này thường được phân tán theo thời gian và các thực thể khác nhau. Khi các phát hiện bảo mật bảo mật được điều tra một cách riêng lẻ, có thể dẫn đến sự hiểu lầm về ý nghĩa của chúng và khó khăn trong việc tìm ra nguyên nhân cốt lõi. Amazon Detective giải quyết vấn đề này bằng cách áp dụng kỹ thuật phân tích đồ thị để suy luận mối quan hệ giữa các phát hiện bảo mật và các thực thể, và nhóm chúng lại với nhau. Chúng tôi khuyến nghị nên coi các nhóm phát hiện bảo mật là điểm khởi đầu để điều tra các thực thể và phát hiện bảo mật liên quan.
 
-Detective phân tích dữ liệu từ các phát hiện bảo mật và nhóm chúng với các phát hiện bảo mật khác có khả năng liên quan dựa trên các tài nguyên mà chúng chia sẻ. Ví dụ, các phát hiện bảo mật liên quan đến các hành động thực hiện bởi cùng một phiên IAM role hoặc xuất phát từ cùng một địa chỉ IP rất có khả năng là một phần của cùng một hoạt động cơ bản. Việc điều tra các phát hiện bảo mật và bằng chứng theo nhóm là rất có giá trị, ngay cả khi các mối liên hệ được tạo ra bởi Detective không liên quan.
+Nhóm phát hiện bảo mật (Finding Groups) trong Amazon Detective cho phép bạn xem xét và phân tích nhiều hoạt động có liên quan đến cùng một sự cố bảo mật tiềm ẩn. Thay vì điều tra từng phát hiện bảo mật một cách rời rạc, Detective giúp gom các phát hiện nghiêm trọng – đặc biệt là từ Amazon GuardDuty – vào các nhóm có ngữ cảnh chung, từ đó hỗ trợ việc xác định nguyên nhân gốc rễ một cách hiệu quả hơn.
 
-Ngoài các phát hiện bảo mật, mỗi nhóm còn bao gồm các thực thể liên quan đến các phát hiện bảo mật. Các thực thể có thể bao gồm các tài nguyên bên ngoài AWS như địa chỉ IP hoặc tác nhân người dùng.
+Trong thực tế, khi một tác nhân đe dọa cố gắng xâm nhập vào môi trường AWS, chúng thường không thực hiện một hành động đơn lẻ mà tiến hành một chuỗi các hành vi liên tiếp. Chuỗi hành động này có thể tạo ra nhiều phát hiện bảo mật khác nhau, xuất hiện ở các thời điểm khác nhau và liên quan đến nhiều thực thể khác nhau. Nếu các phát hiện này được xem xét riêng lẻ, rất dễ dẫn đến việc đánh giá sai mức độ nghiêm trọng của sự cố hoặc bỏ sót mối liên hệ quan trọng giữa chúng.
 
-Sau khi một phát hiện bảo mật GuardDuty ban đầu xảy ra và liên quan đến một phát hiện bảo mật khác, nhóm phát hiện bảo mật với tất cả các phát hiện bảo mật liên quan và tất cả các thực thể liên quan sẽ được tạo ra trong vòng 48 giờ.
+Amazon Detective giải quyết bài toán này bằng cách áp dụng kỹ thuật phân tích đồ thị để suy luận mối quan hệ giữa các phát hiện bảo mật và các thực thể liên quan, sau đó tự động nhóm chúng lại. Cách tiếp cận này giúp hình thành một bức tranh tổng thể về sự cố, thay vì chỉ nhìn thấy từng mảnh thông tin rời rạc. Do đó, các nhóm phát hiện bảo mật thường được khuyến nghị sử dụng như điểm khởi đầu cho quá trình điều tra.
+
+Detective phân tích dữ liệu từ các phát hiện bảo mật và liên kết chúng với những phát hiện khác có khả năng liên quan, dựa trên các tài nguyên hoặc thuộc tính chung mà chúng chia sẻ. Ví dụ, các phát hiện phát sinh từ cùng một phiên IAM role, hoặc bắt nguồn từ cùng một địa chỉ IP, có khả năng cao là thuộc về cùng một hoạt động nền. Việc điều tra theo nhóm như vậy mang lại nhiều giá trị, ngay cả trong những trường hợp mối liên hệ được suy luận không hoàn toàn chính xác, bởi nó vẫn cung cấp thêm ngữ cảnh cho nhà phân tích bảo mật.
+
+Bên cạnh các phát hiện bảo mật, mỗi nhóm còn bao gồm các thực thể liên quan, chẳng hạn như tài nguyên AWS, địa chỉ IP bên ngoài, hoặc các user agent. Những thực thể này đóng vai trò bổ sung ngữ cảnh, giúp làm rõ cách thức và phạm vi của sự cố bảo mật.
+
+Sau khi một phát hiện GuardDuty ban đầu được tạo và được xác định là có liên quan đến các phát hiện khác, Amazon Detective sẽ tự động hình thành một nhóm phát hiện bảo mật bao gồm toàn bộ các phát hiện và thực thể liên quan. Quá trình này thường được hoàn tất trong vòng tối đa 48 giờ kể từ khi phát hiện ban đầu xuất hiện.

@@ -6,14 +6,13 @@ chapter : false
 pre : " <b> 2.4.6 </b> "
 ---
 
-#### Security Hub - Chi phí
+#### Detective - Chi phí
 
-1. Bảng điều khiển GuardDuty hiển thị số ngày còn lại trong thời gian dùng thử miễn phí cũng như chi phí trung bình hàng ngày (dựa trên khối lượng dữ liệu được phân tích và quét), giúp loại bỏ sự phỏng đoán trong việc lập kế hoạch ngân sách.
+1. Trong giai đoạn dùng thử miễn phí, bảng điều khiển của dịch vụ hiển thị số ngày còn lại của thời gian dùng thử cùng với chi phí trung bình theo ngày. Các thông tin này được tính toán dựa trên khối lượng dữ liệu được phân tích, qua đó giúp bạn ước lượng chi phí và lập kế hoạch ngân sách một cách chủ động hơn.
 
-
-2. Từ Detective, mở trang **Usage** từ thanh điều hướng bên trái dưới mục Settings.
+2. Trong Amazon Detective, mở trang **Usage** bằng cách chọn **Settings** từ thanh điều hướng bên trái, sau đó chọn **Usage**.
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.6-GuradDuty-Pricing/s2.png)
 
-
-
-1. Xem lại mức sử dụng hiện tại và ước tính chi phí. Các ước tính hiển thị trong bảng điều khiển GuardDuty có thể khác biệt nhẹ so với những ước tính trong bảng điều khiển AWS Billing and Cost Management của bạn. Để biết thêm thông tin, hãy xem https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html.
+3. Xem xét mức sử dụng hiện tại và chi phí ước tính tương ứng. Lưu ý rằng các con số hiển thị trong bảng điều khiển dịch vụ có thể chênh lệch nhẹ so với số liệu trong AWS Billing and Cost Management, do cách tổng hợp và thời điểm cập nhật dữ liệu khác nhau.  
+Để tìm hiểu chi tiết hơn về cách theo dõi và tính toán chi phí, tham khảo tài liệu tại:  
+https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html

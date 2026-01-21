@@ -1,61 +1,69 @@
 ---
-title : "Detective - Điều tra"
-date : "`r Sys.Date()`"
-weight : 4
-chapter : false
-pre : " <b> 2.4.4 </b> "
+title: "Detective - Điều tra"
+date: "`r Sys.Date()`"
+weight: 4
+chapter: false
+pre: " <b> 2.4.4 </b> "
 ---
 
-#### Xác định một tài nguyên để điều tra
+#### Xác định tài nguyên cần thực hiện điều tra
 
-1. Mở **IAM console** và điều hướng đến trang **Roles**. https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/roles
+1. Truy cập **IAM Console** và mở trang **Roles** tại địa chỉ:  
+   https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/roles
 
- 
-2. Tìm kiếm role bắt đầu bằng "**cfn-GuardDutyLabsInfrastructure-GeneralInstanceRole-**".
+2. Trong danh sách role, tìm các role có tên bắt đầu bằng chuỗi  
+   **`cfn-GuardDutyLabsInfrastructure-GeneralInstanceRole-`**.
 
+3. Nhấp chọn role tương ứng.
+   ![VPC](/images/2/2.4/2.4.4/s3.png)
 
+4. Tại trang chi tiết role, sao chép **ARN** hiển thị ở phần đầu trang.  
+   ARN này sẽ được sử dụng để khởi tạo quá trình điều tra ở bước tiếp theo.
+   ![VPC](/images/2/2.4/2.4.4/s4.png)
 
-3. Chọn tên role.
-![VPC](/images/2/2.4/2.4.4/s3.png)
+---
 
+#### Thực hiện điều tra bằng Amazon Detective
 
-4. Sao chép ARN từ đầu trang. Bạn sẽ cần ARN này trong bước sau.
-![VPC](/images/2/2.4/2.4.4/s4.png)
-#### Thực hiện một cuộc điều tra bằng Detective
+1. Mở trang **Investigations** trong Amazon Detective theo liên kết:  
+   https://us-east-1.console.aws.amazon.com/detective/home?region=us-east-1#investigations
 
-1. Mở trang **Investigations** từ **Detective**. https://us-east-1.console.aws.amazon.com/detective/home?region=us-east-1#investigations 
+2. Trên giao diện Investigations, chọn **Run investigation** ở góc trên bên phải.
+   ![VPC](/images/2/2.4/2.4.4/s6.png)
 
+3. Tại bước **Select resource**, Detective cung cấp nhiều cách để khởi chạy điều tra:
+   - Điều tra tài nguyên được Detective đề xuất,
+   - Điều tra một tài nguyên cụ thể do người dùng chỉ định,
+   - Hoặc khởi tạo điều tra từ trang **Detective Search**.
 
-2. Trong trang Investigations, chọn **Run investigation** ở góc trên bên phải.
-![VPC](/images/2/2.4/2.4.4/s6.png)
+   Trong bài lab này, chọn **Specify an AWS role or user with an ARN**.
 
-1. Trong phần Select resource, bạn có ba cách để thực hiện cuộc điều tra. Bạn có thể chọn chạy cuộc điều tra cho một tài nguyên được Detective khuyến nghị. Bạn có thể chạy cuộc điều tra cho một tài nguyên cụ thể. Bạn cũng có thể điều tra một tài nguyên từ trang Detective Search. Chọn **Specify an AWS role or user with an ARN**.
+4. Ở mục **Select resource type**, chọn **AWS role**.
 
+5. Tại trường **Resource ARN**, dán ARN của role đã sao chép ở phần trước.
 
+6. Nhấn **Run investigation** để bắt đầu quá trình phân tích.
+   ![VPC](/images/2/2.4/2.4.4/s11.png)
 
-8. Dưới **Select resource type** chọn **AWS role**.
+7. Chờ quá trình điều tra hoàn tất. Thông thường, trạng thái sẽ chuyển sang **Successful** sau khoảng 2–3 phút.
+   ![VPC](/images/2/2.4/2.4.4/s12a.png)
 
+8. Nhấp vào **Investigation ID** để xem chi tiết kết quả điều tra.  
+   Tùy thuộc vào dữ liệu lịch sử của tài khoản, bạn có thể thấy thông báo như  
+   _“We did not observe uncommon behavior…”_ nếu không phát hiện hành vi bất thường.
 
-9. Dưới **Resource ARN**, nhập ARN của tài nguyên mà bạn đã xác định ở trên.
-
-
-
-10. Chọn **Run investigation**.
-![VPC](/images/2/2.4/2.4.4/s11.png)
-
-
-11. Chờ cho cuộc điều tra hoàn tất. Nó sẽ hiển thị trạng thái "Successful" trong vòng 2-3 phút.
-![VPC](/images/2/2.4/2.4.4/s12a.png)
-
-
-
-12. Chọn ID của cuộc điều tra để xem kết quả. Tùy thuộc vào thời gian mà tài khoản này đã được cung cấp, bạn có thể thấy "We did not observe uncommon behavior...". Tuy nhiên, nếu có điều gì đó đã được phát hiện, bạn sẽ thấy báo cáo chứa phần Indicators of Compromise sbao gồm các chi tiết liên quan đến một hoặc nhiều indicators of compromise. Tóm tắt điều tra làm nổi bật các indicators bất thường cần được chú ý, cho phạm vi thời gian được chọn. Bằng cách sử dụng bản tóm tắt, bạn có thể nhanh chóng xác định nguyên nhân cốt lõi của các vấn đề bảo mật tiềm ẩn, xác định các mẫu và hiểu rõ các tài nguyên bị ảnh hưởng bởi các sự kiện bảo mật.
+   Trong trường hợp Detective phát hiện dấu hiệu đáng ngờ, báo cáo sẽ bao gồm phần  
+   **Indicators of Compromise (IoCs)** với các thông tin chi tiết liên quan.  
+   Phần tóm tắt điều tra giúp làm nổi bật các chỉ báo bất thường trong khoảng thời gian đã chọn, từ đó hỗ trợ:
+   - Xác định nhanh nguyên nhân gốc rễ của sự cố bảo mật tiềm ẩn,
+   - Nhận diện các mẫu hành vi đáng chú ý,
+   - Hiểu rõ những tài nguyên bị ảnh hưởng bởi chuỗi sự kiện bảo mật.
 
 ![VPC](/images/2/2.4/2.4.4/s12b.png)
 ![VPC](/images/2/2.4/2.4.4/s12c.png)
 
-Nếu bạn muốn tìm thêm chi tiết về loại **IP address**, bạn sẽ thấy các TTP khác nhau:
-![VPC](/images/2/2.4/2.4.4/s12d.png)
+9. Khi mở rộng phân tích với thực thể thuộc loại **IP address**, Detective sẽ hiển thị nhiều **TTP (Tactics, Techniques, and Procedures)** khác nhau liên quan đến hành vi được quan sát.
+   ![VPC](/images/2/2.4/2.4.4/s12d.png)
 
-Loại TTP:
+Các loại TTP này giúp cung cấp thêm ngữ cảnh để hiểu rõ bản chất và mức độ nghiêm trọng của các hoạt động được phát hiện trong quá trình điều tra.
 ![VPC](/images/2/2.4/2.4.4/s12e.png)

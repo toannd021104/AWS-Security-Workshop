@@ -8,11 +8,10 @@ pre : " <b> 2.1.4 </b> "
 
 #### Security Hub - Chi phí
 
+1. Trong giai đoạn dùng thử miễn phí, Security Hub cung cấp ước tính chi phí hàng tháng nếu bạn tiếp tục sử dụng dịch vụ với cùng tập tài khoản và các Region hiện tại. Thông tin này giúp bạn có cái nhìn ban đầu về chi phí phát sinh khi chuyển sang sử dụng trả phí.
 
+2. Trong Security Hub, mở trang **Usage** từ menu điều hướng bên trái, dưới mục **Settings**.
 
-1. Trong thời gian dùng thử miễn phí, bạn sẽ nhận được ước lượng về hóa đơn hàng tháng của bạn nếu bạn tiếp tục sử dụng Security Hub trên cùng các tài khoản và các Regions.
-
-
-2. Trong Security Hub, mở trang **Usage** từ menu điều hướng bên trái dưới phần Settings.
 ![VPC](/images/2/2.1-AWS-Security-Hub/2.1.4-Security-Hub-Pricing/s1.png)
-3. Xem lại mức sử dụng và các yếu tố chi phí của bạn trong thời gian dùng thử hiện tại.
+
+3. Xem lại mức sử dụng hiện tại và các thành phần chi phí được tổng hợp trong giai đoạn dùng thử để hiểu rõ hơn cách Security Hub tính phí.

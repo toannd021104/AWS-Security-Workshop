@@ -1,75 +1,98 @@
 ---
-title : "GuardDuty - Kế hoạch bảo vệ"
-date : "`r Sys.Date()`"
-weight : 3
-chapter : false
-pre : " <b> 2.2.3 </b> "
+title: "GuardDuty - Kế hoạch bảo vệ"
+date: "`r Sys.Date()`"
+weight: 3
+chapter: false
+pre: " <b> 2.2.3 </b> "
 ---
+
 #### Điều kiện tiên quyết
-Đảm bảo rằng EC2 instance có SSM Management Role. Để biết cách thêm instance profile vào EC2 instance, vui lòng tham khảo thêm tại https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html#attach-instance-profile.
+
+Đảm bảo EC2 instance đã được gán **SSM Management Role**. Để biết cách gắn instance profile cho EC2 instance, tham khảo tài liệu tại:  
+https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html#attach-instance-profile
+
 #### S3 Protection trong Amazon GuardDuty
 
-1. Truy cập trang **S3 Protection** dưới phần Protection plans trong bảng điều khiển GuardDuty.
+1. Truy cập trang **S3 Protection** trong mục **Protection plans** của bảng điều khiển GuardDuty.
 
+2. Kiểm tra và xác nhận rằng **S3 Protection** đã được bật.
 
-2. Đảm bảo rằng S3 Protection đã được bật.
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s2.png)
 
 #### EKS Protection trong Amazon GuardDuty
-3. Truy cập trang **EKS Protection** dưới phần Protection plans trong bảng điều khiển GuardDuty.
 
+3. Truy cập trang **EKS Protection** trong mục **Protection plans** của bảng điều khiển GuardDuty.
 
-4. Đảm bảo rằng EKS Audit Log Monitoring đã được bật. Lưu ý: Trải nghiệm trên bảng điều khiển cho GuardDuty EKS Runtime Monitoring hiện được quản lý như một phần của tính năng Runtime Monitoring mới.
+4. Đảm bảo rằng **EKS Audit Log Monitoring** đang được bật.  
+   Lưu ý: Trải nghiệm cấu hình **GuardDuty EKS Runtime Monitoring** hiện được quản lý như một phần của tính năng **Runtime Monitoring** mới.
+
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s4.png)
+
 #### Runtime Monitoring trong Amazon GuardDuty
 
-5. Truy cập trang Runtime Monitoring dưới phần Protection plans trong bảng điều khiển GuardDuty.
+5. Truy cập trang **Runtime Monitoring** trong mục **Protection plans** của bảng điều khiển GuardDuty.
+
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s5.png)
 
-1. Đảm bảo rằng Runtime Monitoring đã được bật cùng với cấu hình Automated agent configuration cho từng Amazon EKS, AWS Fargate (chỉ ECS), và  Amazon EC2.
+1. Xác nhận rằng **Runtime Monitoring** đã được bật, đồng thời cấu hình **Automated agent configuration** cho từng môi trường Amazon EKS, AWS Fargate (chỉ ECS) và Amazon EC2.
+
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s6.png)
 
+1. Trong trang **Runtime Monitoring**, chuyển sang tab **Runtime coverage**. Hãy quan sát mục **Coverage statistics**.  
+   Nội dung chi tiết không nằm trong phạm vi workshop này, bạn có thể tìm hiểu thêm về cách thiết lập Runtime Monitoring tại:  
+   https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring.html
 
-1. Trong trang Runtime Monitoring, chuyển sang tab Runtime coverage. "Coverage statistics" là gì? Mặc dù không nằm trong phạm vi của workshop này, tìm hiểu thêm về cách thiết lập Runtime Monitoring tại https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring.html .
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s7a.png)
 
-*Lưu ý*: Nếu **Coverage status** của EC2 Instance là unhealthy và trạng thái **Issue** là "**No Agent Reporting**" hoặc liên quan đến SSM
+_Lưu ý_: Nếu **Coverage status** của EC2 Instance là _unhealthy_ và trường **Issue** hiển thị **"No Agent Reporting"** hoặc các lỗi liên quan đến SSM
+
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/errorSSM.png)
-có thể là do không thể cài đặt SSM agent trong EC2 instance. Bạn có thể làm rõ bằng cách kiểm tra /var/log/amzn-guardduty-agent trong instance (AL2, AL2023). Đọc thêm tại https://docs.aws.amazon.com/guardduty/latest/ug/gdu-assess-coverage-ec2.html#ec2-runtime-monitoring-coverage-issues-troubleshoot
+
+nguyên nhân có thể do không cài đặt được SSM agent trên EC2 instance. Bạn có thể xác minh bằng cách kiểm tra file `/var/log/amzn-guardduty-agent` trên instance (Amazon Linux 2, Amazon Linux 2023). Tham khảo thêm tại:  
+https://docs.aws.amazon.com/guardduty/latest/ug/gdu-assess-coverage-ec2.html#ec2-runtime-monitoring-coverage-issues-troubleshoot
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s7b.png)
 
 #### Malware Protection cho EC2 trong Amazon GuardDuty
 
-8. Truy cập trang **Malware Protection** dưới mục Protection plans trong bảng điều khiển GuardDuty.
+8. Truy cập trang **Malware Protection** trong mục **Protection plans** của bảng điều khiển GuardDuty.
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s8.png)
 
-9. GuardDuty tự động khởi động quét malware sau khi phát hiện một phát hiện chỉ ra malware trong một EC2 instance hoặc một khối lượng công việc container. Đảm bảo rằng GuardDuty-initiated malware scan đã được bật.
-![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s9.png)
-Dưới đây là một số EC2 malware scans
-![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s9b.png)
-Nếu bạn theo dõi scan qua Scan ID
-![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s9c.png)
-Tệp EICAR-Test là một tệp để kiểm tra xem chức năng phát hiện mối đe dọa có hoạt động hay không. Nó không phải là virus thực sự.
+9. GuardDuty tự động kích hoạt quét malware khi phát hiện một finding cho thấy có dấu hiệu mã độc trên EC2 instance hoặc workload container. Đảm bảo rằng tuỳ chọn **GuardDuty-initiated malware scan** đã được bật.
 
-10. Cuộn xuống và bật **Retain scanned snapshots when malware is detected** on.
+![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s9.png)
+
+Dưới đây là ví dụ một số lần quét malware trên EC2:
+
+![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s9b.png)
+
+Khi theo dõi chi tiết một lần quét thông qua **Scan ID**:
+
+![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s9c.png)
+
+_Tệp EICAR-Test_ là tệp dùng để kiểm tra khả năng phát hiện mối đe doạ và không phải là virus thực sự.
+
+10. Cuộn xuống và bật tuỳ chọn **Retain scanned snapshots when malware is detected**.
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s10.png)
+
 #### RDS Protection trong Amazon GuardDuty
 
-11. Truy cập trang **RDS Protection** dưới mục Protection plans trong bảng điều khiển GuardDuty.
+11. Truy cập trang **RDS Protection** trong mục **Protection plans** của bảng điều khiển GuardDuty.
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s11.png)
 
-12. Đảm bảo rằng RDS Login Activity Monitoring đã được bật.
-
+12. Đảm bảo rằng **RDS Login Activity Monitoring** đã được bật.
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s12.png)
+
 #### Lambda Protection trong Amazon GuardDuty
-13. Truy cập trang **Lambda Protection** dưới mục Protection plans trong bảng điều khiển GuardDuty.
+
+13. Truy cập trang **Lambda Protection** trong mục **Protection plans** của bảng điều khiển GuardDuty.
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s13.png)
-14. Đảm bảo rằng Lambda Network Activity Monitoring đã được bật.
+
+14. Xác nhận rằng **Lambda Network Activity Monitoring** đang được bật.
 
 ![VPC](/images/2/2.2-Amazon-GuardDuty/2.2.3-GuardDuty-Protection-plans/s14.png)
