@@ -1,19 +1,23 @@
 ---
-title: "Threat Detection & Response Workshop"
+title: "AWS Security Monitoring and Investigation Workshop"
 date: "`r Sys.Date()`"
 thumbnail: "images/thumbnail.jpg"
 weight: 1
 chapter: false
 ---
 
-# Threat Detection & Response Workshop
+# AWS Security Monitoring and Investigation Workshop
 
 ### Overall
 
-This workshop provides an introductory overview and then progresses into deeper exploration of AWS threat detection and response services, including common use cases, best practices, and practical scenarios. It begins with an introduction to the relevant services and then moves into advanced topics, with modules that focus on multi-service solutions, integrations, custom orchestration examples, and responses to specific detections. The overall goal is to help you build the knowledge and skills required to operate more securely on AWS.
+This workshop focuses on how to monitor, analyze, and investigate security events in AWS environments using native AWS security services. Participants will learn how security findings are generated, aggregated, correlated, and investigated across accounts and regions.
+
+The workshop starts with an introduction to core AWS security monitoring services, followed by hands-on modules covering centralized visibility, service integrations, security investigations, and automated workflows. The objective is to help you understand how to operate and maintain effective security visibility and investigation capabilities at scale on AWS.
 
 {{%notice warning%}}
-Most of this workshop is built using AWS workshop accounts, which include the setup of multiple EC2 instances. The exception is Section 5.3, where you can explore the “Automated Security Response” AWS Solution in more depth. You can participate in this workshop by registering for the AWS Activation Day “Threat Detection & Response” at https://awsactivationdays.splashthat.com/.
+Most resources used in this workshop are provisioned through AWS workshop accounts, including multiple EC2 instances.  
+Section 5.3 is an exception, where you will explore the **Automated Security Response on AWS** solution in more depth.  
+You can join this workshop by registering for the AWS Activation Day **“AWS Security Operations”** at https://awsactivationdays.splashthat.com/.
 {{%/notice%}}
 
 ### Content
